@@ -2,11 +2,11 @@
   .side-bar__header
     .side-bar__header__contents
       .side-bar__header__contents--user-name
-        naoto
+        = current_user.name
       .side-bar__header__contents--icon
         = link_to "#", class: "new-group" do
           = icon("far", "edit")
-        = link_to "#", class: "edit-account" do
+        = link_to edit_user_path(current_user), class: "edit-account" do
           = icon("fas", "cog")
   .side-bar__group-list
     = link_to "#", class: "group-box" do
