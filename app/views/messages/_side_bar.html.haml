@@ -1,0 +1,26 @@
+.side-bar
+  .side-bar__header
+    .side-bar__header__contents
+      .side-bar__header__contents--user-name
+        naoto
+      .side-bar__header__contents--icon
+        = link_to "#", class: "new-group" do
+          = icon("far", "edit")
+        = link_to "#", class: "edit-account" do
+          = icon("fas", "cog")
+  .side-bar__group-list
+    = link_to "#", class: "group-box" do
+      .group-box__group-name
+        group1
+      .group-box__latest-message
+        まだメッセージがありません
+    = link_to "#", class: "group-box" do
+      .group-box__group-name
+        group2
+      .group-box__latest-message
+        まだメッセージがありません
+    = link_to "#", class: "group-box" do
+      .group-box__group-name
+        group3
+      .group-box__latest-message
+        まだメッセージがありません
