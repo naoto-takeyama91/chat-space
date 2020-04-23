@@ -4,23 +4,14 @@
       .side-bar__header__contents--user-name
         = current_user.name
       .side-bar__header__contents--icon
-        = link_to "#", class: "new-group" do
+        = link_to new_group_path, class: "new-group" do
           = icon("far", "edit")
-        = link_to edit_user_path(current_user), class: "edit-account" do
+        = link_to edit_user_path(current_user.id), class: "edit-account" do
           = icon("fas", "cog")
   .side-bar__group-list
-    = link_to "#", class: "group-box" do
-      .group-box__group-name
-        group1
-      .group-box__latest-message
-        まだメッセージがありません
-    = link_to "#", class: "group-box" do
-      .group-box__group-name
-        group2
-      .group-box__latest-message
-        まだメッセージがありません
-    = link_to "#", class: "group-box" do
-      .group-box__group-name
-        group3
-      .group-box__latest-message
-        まだメッセージがありません
+    - current_user.groups.each do |group|
+      = link_to "#", class: "group-box" do
+        .group-box__group-name
+          = group.name
+        .group-box__latest-message
+          まだメッセージがありません
