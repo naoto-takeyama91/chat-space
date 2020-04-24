@@ -2,42 +2,24 @@
   .chat-main__header
     .chat-main__header__left-contents
       .chat-main__header__left-contents--group-name
-        group名
+        = @group.name
       .chat-main__header__left-contents--member
-        Member : naoto
+        = "Member："
+        %ul.member-list
+          - @group.group_users.each do |group_user|
+            %li
+              = group_user.user.name
     .chat-main__header__right-contents
-      = link_to "#", class: "edit-btn" do
+      = link_to edit_group_path(@group), class: "edit-btn" do
         Edit
   .chat-main__message-list
-    .message-box
-      .message-box__top-contents
-        .message-box__top-contents--poster-name
-          naoto
-        .message-box__top-contents--post-date
-          2020/4/22(wed) 08:36:01
-      .message-box__message-text
-        おはようございます
-    .message-box
-      .message-box__top-contents
-        .message-box__top-contents--poster-name
-          naoto
-        .message-box__top-contents--post-date
-          2020/4/22(wed) 12:23:31
-      .message-box__message-text
-        こんにちは
-    .message-box
-      .message-box__top-contents
-        .message-box__top-contents--poster-name
-          naoto
-        .message-box__top-contents--post-date
-          2020/4/22(wed) 19:59:22
-      .message-box__message-text
-        こんばんは
+    = render @messages
   .chat-main__message-form
-    %form.new-message
-      .new-message__input-box
-        %input.new-message__input-box__text{placeholder: "type a message", type: "text"}
-        %label.new-message__input-box__image
-          = icon("far", "image")
-          %input.new-message__input-box__image--file{type: "file"}
-      %input.new-message__submit-btn{type: "submit", value: "Send"}
+    = form_for [@group, @message] do |f|
+      .new-message    
+        .new-message__input-box
+          = f.text_field :content, class: "new-message__input-box__text", placeholder: "type a message"
+          =f.label :image, class: "new-message__input-box__image" do
+            = icon("far", "image")
+            = f.file_field :image, class: "new-message__input-box__image--file"
+        = f.submit "Send", class: "new-message__submit-btn"
