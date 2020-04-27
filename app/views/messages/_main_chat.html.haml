@@ -19,7 +19,7 @@
       .new-message    
         .new-message__input-box
           = f.text_field :content, class: "new-message__input-box__text", placeholder: "type a message"
-          =f.label :image, class: "new-message__input-box__image" do
+          = f.label :image, class: "new-message__input-box__image" do
             = icon("far", "image")
             = f.file_field :image, class: "new-message__input-box__image--file"
         = f.submit "Send", class: "new-message__submit-btn"
